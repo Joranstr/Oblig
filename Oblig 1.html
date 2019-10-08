@@ -21,7 +21,8 @@
             
         }
 
-        .header {
+        #header {
+            
             background-color: red;
             background-image: linear-gradient(to bottom, darkred, blue);
             /*border: 1px solid black;*/
@@ -30,7 +31,7 @@
             grid-row: 1/2;
             
         }
-        .mid {
+        #mid {
             background-color:blue;
             background-image: linear-gradient(to bottom, blue, red);
             /*border: 1px solid black;*/
@@ -57,33 +58,69 @@
             float: left;
             height:50px;
             width: 50px;
+            grid-column:1/1;
             
         }
-        dropdown-content {
+        .toggleStyle{
 
+        }
+        <p>{
+            padding:20px;
         }
 
     </style>
 </head>
 <body>
     <div class="body">
-        <div class="header">
-            <div class="menu" onmouseover="dropdown()">Meny
-                <div class="dropdown-content">
-
-                </div>
+        <div id="header">
+            <div class="menu" onclick="moveDiv()">Meny
+                
             </div>
-            test2
+            <h1><center>Oblig 1</center></h1>
         </div>
-        <div class="mid">
-            1
+        <div id="mid">
+            <button id="knappParagraf1">Paragraf1</button>
+            <button id="knappParagraf2">Paragraf2</button>
+            <button id="knappParagraf2">Sluttord</button><br/>
+            <input type="text" id="textbox" onchange="textInputHandler()"/>
+            <p id="paragraf1" onclick="choosebox('toppParagraf')">
+                topp
+            </p "paragraf1" >
+            <p id="paragraf2" onclick="choosebox('bundParagraf')">
+                bund
+            </p>
         </div>
         <div class="lower">
-            2
+            <p id="paragraf3" onclick="choosebox('sluttParagraf')">slutt</p>
         </div>
     </div>
     <script>
+        let changeMidDiv = document.getElementById('mid');
+        let selectedMenu = document.getElementsByClassName('menu');
+        let valgtParagraf;
+        let toppParagraf = document.getElementById('paragraf1');
+        let bundParagraf = document.getElementById('paragraf2');
+        let sluttParagraf = document.getElementById('paragraf3');
 
+        function choosebox(motattParagraf) {
+            valgtParagraf = motattParagraf;
+            console.log('motattParagraf'+' '+ motattParagraf)
+        }
+        function textInputHandler() {
+            console.log(valgtParagraf);
+            if (valgtParagraf = toppParagraf) {
+                toppParagraf.innerHTML = textbox.value;
+                console.log('motattParagraf'+' '+ motattParagraf)
+            }
+            if (valgtParagraf = bundParagraf) {
+                console.log('test1');
+                bundParagraf.innerHTML = textbox.value;
+                console.log('motattParagraf'+' '+ motattParagraf)
+            } else if (valgtParagraf = sluttParagraf) {
+                console.log('test2');
+                sluttParagraf.innerHTML = textbox.value;
+            }
+        }
     </script>
 </body>
 </html>
