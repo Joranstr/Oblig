@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+            
+        }
+        .body {
+            height: 100vh;
+            width:100vw;
+            display: grid;
+            /*background-color: blue;*/
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 2fr 10fr 1fr;
+            border: 1px dotted darkred;
+            
+        }
+
+        .header {
+            background-color: red;
+            background-image: linear-gradient(to bottom, darkred, blue);
+            /*border: 1px solid black;*/
+            border-radius:;
+            grid-column:1/4;
+            grid-row: 1/2;
+            
+        }
+        .mid {
+            background-color:blue;
+            background-image: linear-gradient(to bottom, blue, red);
+            /*border: 1px solid black;*/
+            grid-column:1/4;
+            grid-row:2/3
+        }
+        .lower{
+            background-color: red;
+            background-image:linear-gradient(to bottom, red, black);
+            /*border: 1px solid black;*/
+            grid-column:1/4;
+
+        }
+        .menu {
+            display: flex;
+            justify-content:center;
+            flex-direction:column;
+            text-align:center;
+            margin:0;
+            padding:0;
+            background-color:blue;
+            background-image:linear-gradient(to buttom, red, blue);
+            border: 1px solid black;
+            float: left;
+            height:50px;
+            width: 50px;
+            
+        }
+        dropdown-content {
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="body">
+        <div class="header">
+            <div class="menu" onmouseover="dropdown()">Meny
+                <div class="dropdown-content">
+
+                </div>
+            </div>
+            test2
+        </div>
+        <div class="mid">
+            1
+        </div>
+        <div class="lower">
+            2
+        </div>
+    </div>
+    <script>
+
+    </script>
+</body>
+</html>
