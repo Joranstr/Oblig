@@ -82,16 +82,16 @@
             <button id="knappParagraf1">Paragraf1</button>
             <button id="knappParagraf2">Paragraf2</button>
             <button id="knappParagraf2">Sluttord</button><br/>
-            <input type="text" id="textbox" onchange="textInputHandler()"/>
-            <p id="paragraf1" onclick="choosebox('toppParagraf')">
+            <input type="text" id="textbox" oninput="textInputHandler()"/>
+            <p id="paragraf1" onclick="choosebox(toppParagraf)">
                 topp
             </p "paragraf1" >
-            <p id="paragraf2" onclick="choosebox('bundParagraf')">
+            <p id="paragraf2" onclick="choosebox(bundParagraf)">
                 bund
             </p>
         </div>
         <div class="lower">
-            <p id="paragraf3" onclick="choosebox('sluttParagraf')">slutt</p>
+            <p id="paragraf3" onclick="choosebox(sluttParagraf)">slutt</p>
         </div>
     </div>
     <script>
@@ -108,15 +108,15 @@
         }
         function textInputHandler() {
             console.log(valgtParagraf);
-            if (valgtParagraf = toppParagraf) {
+            if (valgtParagraf == toppParagraf) {
                 toppParagraf.innerHTML = textbox.value;
-                console.log('motattParagraf'+' '+ motattParagraf)
+                console.log('motattParagraf' + ' ' + valgtParagraf)
             }
-            if (valgtParagraf = bundParagraf) {
+            if (valgtParagraf == bundParagraf) {
                 console.log('test1');
                 bundParagraf.innerHTML = textbox.value;
-                console.log('motattParagraf'+' '+ motattParagraf)
-            } else if (valgtParagraf = sluttParagraf) {
+                console.log('motattParagraf' + ' ' + valgtParagraf)
+            } else if (valgtParagraf == sluttParagraf) {
                 console.log('test2');
                 sluttParagraf.innerHTML = textbox.value;
             }
