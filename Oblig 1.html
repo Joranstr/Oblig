@@ -14,7 +14,6 @@
             height: 100vh;
             width:100vw;
             display: grid;
-            /*background-color: blue;*/
             grid-template-columns: 1fr 1fr 1fr;
             grid-template-rows: 2fr 10fr 1fr;
             border: 1px dotted darkred;
@@ -25,7 +24,6 @@
             
             background-color: red;
             background-image: linear-gradient(to bottom, darkred, blue);
-            /*border: 1px solid black;*/
             border-radius:;
             grid-column:1/4;
             grid-row: 1/2;
@@ -34,14 +32,12 @@
         #mid {
             background-color:blue;
             background-image: linear-gradient(to bottom, blue, red);
-            /*border: 1px solid black;*/
             grid-column:1/4;
             grid-row:2/3
         }
         .lower{
             background-color: red;
             background-image:linear-gradient(to bottom, red, black);
-            /*border: 1px solid black;*/
             grid-column:1/4;
 
         }
@@ -74,8 +70,7 @@
         }
     </style>
 </head>
-<body>
-    <div class="body">
+<body class="body"> 
         <div id="header">
             <div class="menu" onclick="hiddenDiv()">Meny
                 
@@ -99,7 +94,6 @@
         <div class="lower">
             <p id="paragraf3" onclick="choosebox(this)">slutt</p>
         </div>
-    </div>
     <script>
         let changeMidDiv = document.getElementById('mid');
         let selectedMenu = document.getElementsByClassName('menu');
@@ -109,12 +103,12 @@
         let sluttParagraf = document.getElementById('paragraf3');
 
         hiddenDiv();
-        function hiddenDiv(buttonDiv) {
-            var e = document.getElementById('buttonDiv')
-            if (e.style.display == 'none')
-                e.style.display = 'block';
+        function hiddenDiv() {
+            var homeHide = document.getElementById('buttonDiv')
+            if (homeHide.style.display == 'none')
+                homeHide.style.display = 'block';
             else
-                e.style.display = 'none';
+                homeHide.style.display = 'none';
 
         }
 
