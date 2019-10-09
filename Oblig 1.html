@@ -69,31 +69,35 @@
             min-height:20px;
             brorder:1 px dotted black;
         }
-
+        div.buttonDiv{
+            display:'none';
+        }
     </style>
 </head>
 <body>
     <div class="body">
         <div id="header">
-            <div class="menu" onclick="moveDiv()">Meny
+            <div class="menu" onclick="hiddenDiv()">Meny
                 
             </div>
             <h1><center>Oblig 1</center></h1>
         </div>
         <div id="mid">
-            <button id="knappParagraf1">Paragraf1</button>
-            <button id="knappParagraf2">Paragraf2</button>
-            <button id="knappParagraf2">Sluttord</button><br/>
+            <div id="buttonDiv">
+                <input type="button" value="Første paragraf" onclick="choosebox(toppParagraf)"/>
+                <input type="button" value="Andre paragraf" onclick="choosebox(bundParagraf)"/>
+                <input type="button" value="Slutt ord" onclick="choosebox(sluttParagraf)"/>
+            </div>
             <input type="text" id="textbox" onchange="textInputHandler()"/>
-            <p id="paragraf1" onclick="choosebox(toppParagraf)">
+            <p id="paragraf1" onclick="choosebox(this)">
                 topp
             </p "paragraf1" >
-            <p id="paragraf2" onclick="choosebox(bundParagraf)">
+            <p id="paragraf2" onclick="choosebox(this)">
                 bund
             </p>
         </div>
         <div class="lower">
-            <p id="paragraf3" onclick="choosebox(sluttParagraf)">slutt</p>
+            <p id="paragraf3" onclick="choosebox(this)">slutt</p>
         </div>
     </div>
     <script>
@@ -103,6 +107,16 @@
         let toppParagraf = document.getElementById('paragraf1');
         let bundParagraf = document.getElementById('paragraf2');
         let sluttParagraf = document.getElementById('paragraf3');
+
+        hiddenDiv();
+        function hiddenDiv(buttonDiv) {
+            var e = document.getElementById('buttonDiv')
+            if (e.style.display == 'none')
+                e.style.display = 'block';
+            else
+                e.style.display = 'none';
+
+        }
 
         function choosebox(motattParagraf) {
             valgtParagraf = motattParagraf;
