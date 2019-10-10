@@ -1,0 +1,35 @@
+Dette er Obligatoriske oppgave 1
+
+Vi starter og lese html filen fra toppen, så vil jeg vise under veis og forklare hva de forskjellige tingene gjør.
+
+Først starter vi med STYLE tagen som da refererer til oppsett og utsene til siden.
+Her har jeg valgt og starte med stjerne som refererer til hele siden hvor jeg da har valgt og sette margin og padding til 0 for og være sikker på at jeg fyller hele siden.
+Her ser en også flere forskjellige måter og referere til DIV'er som vi vil se seinere jeg da styrer hvordan denne utfolder seg.
+I .body har jeg valgt og bruke view Heigh vw of fr for å kunne ha en mer dynamisk siden som vil tilpasse seg etter størelsen og oppløsningen på skjermen istede
+ for å har en fast en het som px som da vil begrene hvor dan denne sidne vil utforme seg om skjermen er større eller mindre enn det som er satt.
+Grunnen til at jeg har valgt og bruke # og . er pga at det referer til Id med # og . Class som vi vil se nedover.
+
+nå går vi ned til diver hvor jeg vil vise teks linjene og hvordan det fungerer.
+først ser vi body hvor div'er og script ligger under med under diver og funksjoner.
+body har en class som referer til stylingen over for og denne dekker hele siden siden alle divene ligger inni denne.
+så har vi en div ned id som jeg valgt for at skulle være enklerer og kalle opp senere i oppgave.
+inni denne har jeg en meny div. og en over skrift. jeg valgt og bruke meny diven for å ha en knapp og trykke på for og da seinere kunne sjule og vie en under div via funksjonen hiddendiv
+
+nå går vi over til div med id mid inni denne har vi både en div med egen id en input enhet og 2 paragrafer. 
+innen for diven er det en div med id buttondov i denne ligger det 3 inputer med en egenskal som heter type som definerer hva denne vil bli vist som.
+her brukte jeg button for det var det som var mest gunstig for det bruke jeg hadde, men fins flere forskjellige type en kan bruke.
+grunnen til at jeg valgt å bruke input og ikke en enkel knapp funksjon var siden det var enklere og kalle på den funksjonen som disse skulle referere til.
+funksjoen choosebox.
+nå går vi til funksjoen choose box, med denne funksjonen så rett og slett velger jeg hvem div jeg skal endre på. 
+her har jeg også valgt og bruke console log for og se at faktisk får igjennen om verdi fra knapper og trykk på div'er.
+
+Nå går vi opp igjen til div med Id mid.
+i i denne diveven har jeg valgt og legge 2 paragrafer som en kan endre på med inputen med en type som er txt. dette gjør at man kan skrive,
+her valgte jeg å bruke Onchange siden  da kan en enten presse enter etter en har endre til det en vil ellers kan en bare trykke på utsiden.
+denne inputen kaller også på en funksjon som heter textinputhandler. 
+
+Nå beveger vi oss ned til funksjoen textinputhandler.
+i denn funksjoen så behandler vi hvem paragraf som vi endre innerhtml til. det vil si at vi endre alt inni denne diven.
+ vi kunne valgt og bruke innertxt for og endre kun indre tekst men dette ville bare tatt med bokstavene en skriver og ikke mellomromene.
+i funksjonen så har jeg brukt IF settinger for og si hvis disse parameterne stemmer så endre på denne innerhtml til dette. 
+som jeg da har gjenntatt for de 3 divene som kan endres
