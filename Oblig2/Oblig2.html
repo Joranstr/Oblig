@@ -89,7 +89,6 @@
         }
         function chooseRect(stolpe) {
             stolpe == selectedBar ? selectedBar = null : selectedBar = stolpe;
-            //showChart();
             //if (stolpe == selectedBar) {
             //    selectedBar = null;
 
@@ -109,11 +108,11 @@
         function removeBarFunc() {
             numbers.splice(selectedBar - 1, 1);
             selectedBar = null;
-            //showChart();
         }
 
         function changeBarFunc() {
             console.log('fungerer', selectedBar, input.value)
+            //her er det -1 etter selectedBar for å velge nummeret som er selected og ikke neste i arrayen.
             numbers[selectedBar - 1] = input.value;
             selectedBar = null;
 
