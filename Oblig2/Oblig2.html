@@ -1,0 +1,133 @@
+﻿<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Obligatorisk oppgave 2</title>
+    <style>
+        * {
+            user-select: none;
+        }
+
+        .border {
+            stroke: black;
+            stroke-width: 0.5px;
+        }
+    </style>
+</head>
+
+<body>
+    <svg id="chart" width="500" viewBox="0 -50 80 110"></svg>
+    <div>valgt stolpe er <i id="infoDiv"></i></div>
+    <br />
+    Verdi:
+    <input id="input" type="number" min="1" max="10" />
+    <button id="addBar" onclick="addBarFunc()">Legg til stolpe</button>
+    <button id="changeBar" onclick="changeBarFunc()" disabled>Endre valgt stolpe</button>
+    <br />
+    <button id="removeBar" onclick="removeBarFunc()" disabled>Fjerne valgt stolpe</button>
+
+    <script>
+        // hjelpeletiable for både view og controller
+        let svgTag = document.getElementById('chart');
+        let selectedBar = null;
+        let input = document.getElementById('input');
+        let barNo;
+        let infoDiv = document.getElementById('infoDiv');
+        let addBar = document.getElementById('addBar');
+        let changeBar = document.getElementById('changeBar');
+        let removeBar = document.getElementById('removeBar');
+
+        // model
+        let numbers = [7, 3, 1, 5, 10];
+
+        // view
+        showChart();
+        function showChart() {
+            let svgInnerHtml = '';
+            for (let i = 0; i < numbers.length; i++) {
+                svgInnerHtml += createBar(numbers[i], i + 1);
+            }
+            svgTag.innerHTML = svgInnerHtml;
+
+            //selectedBar === null ? infoDiv.innerHTML = 'Valtgt stolpe er ' + 'ingen' : infoDiv.innerHTML = 'Valgt stolpe er ' + `${selectedBar}`;
+            //if (selectedBar === null) {
+            //    infoDiv.innerHTML = 'Valtgt stolpe er ' + 'ingen';
+            //} else {
+            //    infoDiv.innerHTML = 'Valgt stolpe er ' + `${selectedBar}`;
+            //}
+            //console.log('fungerer showChart');
+            selectedBar !== null ? (infoDiv.innerHTML = `${selectedBar}`, changeBar.disabled = false, removeBar.disabled = false) :
+                (infoDiv.innerHTML = 'ingen', changeBar.disabled = true, removeBar.disabled = true);
+        }
+        //*ekstra* Kjører showChart() når en gjør et klikk istede for å ha den i alle funksjoner.
+        window.addEventListener("click", () => {
+            showChart()
+        });
+        //controller
+        function createBar(number, barNo) {
+            const width = 8;
+            const spacing = 2;
+            let x = (barNo - 1) * (width + spacing);
+            let height = number * 10;
+            let y = 60 - height;
+            let color = calcColor(1, 10, barNo);
+            let stroke;
+            //console.log('createBar topp', 'barNo', barNo, selectedBar, 'selectedBar');
+            if (barNo == selectedBar) {
+                stroke = 'class="Border"';
+                //console.log('inne i IF')
+            }
+            return `<rect onclick="chooseRect(${barNo})"
+                    width="${width}"
+                    height="${height}"
+                    ${stroke}
+                    x="${x}" y="${y}" 5
+                    fill="${color}" ></rect>`;
+
+            //console.log('createBar fungerer');
+        }
+        function chooseRect(stolpe) {
+            stolpe == selectedBar ? selectedBar = null : selectedBar = stolpe;
+            //showChart();
+            //if (stolpe == selectedBar) {
+            //    selectedBar = null;
+
+            //}
+            //else {
+            //    selectedBar = stolpe;
+            //}
+            //console.log('chooseRect fungerer');
+        }
+        function calcColor(min, max, val) {
+            let minHue = 240, maxHue = 0;
+            let curPercent = (val - min) / (max - min);
+            let colString = "hsl(" + ((curPercent * (maxHue - minHue)) + minHue) + ",100%,50%)";
+            return colString;
+        }
+
+        function removeBarFunc() {
+            numbers.splice(selectedBar - 1, 1);
+            selectedBar = null;
+            //showChart();
+        }
+
+        function changeBarFunc() {
+            console.log('fungerer', selectedBar, input.value)
+            numbers[selectedBar - 1] = input.value;
+            selectedBar = null;
+
+        }
+
+        function addBarFunc() {
+            if (input.value >= 1 && input.value <= 10) {
+                numbers.push(input.value);
+                input.value = null;
+            } else {
+                alert('Verdi må være mer eller lik 1 og mindre eller lik 10');
+            }
+        }
+    
+    </script>
+</body>
+</html>
