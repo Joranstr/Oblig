@@ -60,11 +60,11 @@
             selectedBar !== null ? (infoDiv.innerHTML = `${selectedBar}`, changeBar.disabled = false, removeBar.disabled = false) :
                 (infoDiv.innerHTML = 'ingen', changeBar.disabled = true, removeBar.disabled = true);
         }
+        //controller
         //*ekstra* Kjører showChart() når en gjør et klikk istede for å ha den i alle funksjoner.
         window.addEventListener("click", () => {
             showChart()
         });
-        //controller
         function createBar(number, barNo) {
             const width = 8;
             const spacing = 2;
@@ -82,7 +82,7 @@
                     width="${width}"
                     height="${height}"
                     ${stroke}
-                    x="${x}" y="${y}" 5
+                    x="${x}" y="${y}"
                     fill="${color}" ></rect>`;
 
             //console.log('createBar fungerer');
@@ -111,7 +111,7 @@
         }
 
         function changeBarFunc() {
-            console.log('fungerer', selectedBar, input.value)
+            //console.log('fungerer', selectedBar, input.value)
             //her er det -1 etter selectedBar for å velge nummeret som er selected og ikke neste i arrayen.
             numbers[selectedBar - 1] = input.value;
             selectedBar = null;
