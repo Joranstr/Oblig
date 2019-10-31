@@ -4,28 +4,42 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+    <style>
+        .stroke{
+            stroke: black;
+            stroke-width: 0.5px ;
+        }
+    </style>
 </head>
 <body>
     <div>
-        <svg id="chart" width="500" viewBox="0 0 80 60"></svg>
+        <svg id="chart" width="500" viewBox="0 -40 100 110"></svg>
     </div>
-    Valgt stolpe: <i>ingen</i>
+    Valgt stolpe: <i id="info"></i>
     <br />
     Verdi:
     <input type="number" min="1" max="10" />
     <button>Legg til stolpe</button>
-    <button disabled>Endre valgt stolpe</button>
+    <button id="changeBtn" onclick="changeBar()" disabled>Endre valgt stolpe</button>
     <br />
-    <button disabled>Fjerne valgt stolpe</button>
+    <button id="removeBtn" onclick="removeBar()" disabled>Fjerne valgt stolpe</button>
 
     <script>
-        // hjelpevariable for både view og controller
-        var svgTag = document.getElementById('chart');
+        // hjelpeletiable for både view og controller
+        let svgTag = document.getElementById('chart');
+        let selectedBar = null;
+        let barNo;
+        let info = document.getElementById('info');
+        let changeBtn = document.getElementById('changeBtn');
+        let removeBtn = document.getElementById('removeBtn');
 
         // model
         let numbers = [7, 3, 1, 5, 8];
 
         // view
+        window.addEventListener('click', () => {
+            showChart();
+        })
         showChart();
         function showChart() {
             let svgInnerHtml = '';
@@ -33,6 +47,17 @@
                 svgInnerHtml += createBar(numbers[i], i + 1);
             }
             svgTag.innerHTML = svgInnerHtml;
+            if (selectedBar !== null) {
+                info.innerHTML = selectedBar;
+                changeBtn.disabled = false;
+                removeBtn.disabled = false;
+               
+            } else {
+                info.innerHTML = 'ingen';
+                changeBtn.disabled = true;
+                removeBtn.disabled = true;
+            }
+            //barNo == selectedBar ? stroke = 'class="stroke"' : stroke = null;
         }
 
         function createBar(number, barNo) {
@@ -43,17 +68,19 @@
             let y = 60 - height;
             let color = calcColor(1, 10, barNo);
             let stroke;
+
+            if (barNo == selectedBar) {
+                stroke = 'class= "stroke"';
+            }
             return `<rect onclick="chooseRect(${barNo})" width="${width}" height="${height}"
                                     ${stroke} x="${x}" y="${y}" fill="${color}"  ></rect>`;
-            if (selectedBar == barNo) {
-                rect.style.stroke: black;
-            }
+
         }
 
         function calcColor(min, max, val) {
-            var minHue = 240, maxHue = 0;
-            var curPercent = (val - min) / (max - min);
-            var colString = "hsl(" + ((curPercent * (maxHue - minHue)) + minHue) + ",100%,50%)";
+            let minHue = 240, maxHue = 0;
+            let curPercent = (val - min) / (max - min);
+            let colString = "hsl(" + ((curPercent * (maxHue - minHue)) + minHue) + ",100%,50%)";
             return colString;
         }
 
@@ -64,6 +91,14 @@
 
         function chooseRect(stolpe) {
             stolpe == selectedBar ? selectedBar = null : selectedBar = stolpe;
+        }
+
+        function removeBar() {
+            numbers.splice(selectedBar - 1, 1);
+            selectedBar = null;
+        }
+        function changeBar() {
+
         }
     </script>
 </body>
