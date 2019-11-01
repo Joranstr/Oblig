@@ -13,13 +13,13 @@
 </head>
 <body>
     <div>
-        <svg id="chart" width="500" viewBox="0 -40 100 110"></svg>
+        <svg id="chart" width="500" viewBox="0 -50 80 110"></svg>
     </div>
     Valgt stolpe: <i id="info"></i>
     <br />
     Verdi:
-    <input type="number" min="1" max="10" />
-    <button>Legg til stolpe</button>
+    <input id="input" type="number" min="1" max="10" />
+    <button onclick="addBar()">Legg til stolpe</button>
     <button id="changeBtn" onclick="changeBar()" disabled>Endre valgt stolpe</button>
     <br />
     <button id="removeBtn" onclick="removeBar()" disabled>Fjerne valgt stolpe</button>
@@ -32,6 +32,7 @@
         let info = document.getElementById('info');
         let changeBtn = document.getElementById('changeBtn');
         let removeBtn = document.getElementById('removeBtn');
+        let input = document.getElementById('input');
 
         // model
         let numbers = [7, 3, 1, 5, 8];
@@ -57,7 +58,7 @@
                 changeBtn.disabled = true;
                 removeBtn.disabled = true;
             }
-            //barNo == selectedBar ? stroke = 'class="stroke"' : stroke = null;
+            
         }
 
         function createBar(number, barNo) {
@@ -98,6 +99,16 @@
             selectedBar = null;
         }
         function changeBar() {
+            numbers[selectedBar - 1] = input.value;
+            selectedBar = null;
+        }
+        function addBar() {
+            if (input.value >= 1 && input.value <= 10) {
+                numbers.push(input.value);
+                input.value = null;
+            } else {
+                alert('Invalid number');
+            }
 
         }
     </script>
