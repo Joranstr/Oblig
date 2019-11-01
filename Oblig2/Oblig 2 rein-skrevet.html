@@ -5,9 +5,9 @@
     <meta charset="utf-8" />
     <title></title>
     <style>
-        .stroke{
+        .stroke {
             stroke: black;
-            stroke-width: 0.5px ;
+            stroke-width: 0.5px;
         }
     </style>
 </head>
@@ -27,8 +27,6 @@
     <script>
         // hjelpeletiable for både view og controller
         let svgTag = document.getElementById('chart');
-        let selectedBar = null;
-        let barNo;
         let info = document.getElementById('info');
         let changeBtn = document.getElementById('changeBtn');
         let removeBtn = document.getElementById('removeBtn');
@@ -36,6 +34,7 @@
 
         // model
         let numbers = [7, 3, 1, 5, 8];
+        let selectedBar = null;
 
         // view
         window.addEventListener('click', () => {
@@ -48,17 +47,10 @@
                 svgInnerHtml += createBar(numbers[i], i + 1);
             }
             svgTag.innerHTML = svgInnerHtml;
-            if (selectedBar !== null) {
-                info.innerHTML = selectedBar;
-                changeBtn.disabled = false;
-                removeBtn.disabled = false;
-               
-            } else {
-                info.innerHTML = 'ingen';
-                changeBtn.disabled = true;
-                removeBtn.disabled = true;
-            }
-            
+            let isSelected = selectedBar !== null;
+            info.innerHTML = isSelected ? selectedBar : 'ingen';
+            changeBtn.disabled = !isSelected;
+            removeBtn.disabled = !isSelected;
         }
 
         function createBar(number, barNo) {
@@ -68,13 +60,9 @@
             let height = number * 10;
             let y = 60 - height;
             let color = calcColor(1, 10, barNo);
-            let stroke;
-
-            if (barNo == selectedBar) {
-                stroke = 'class= "stroke"';
-            }
+            let stroke = barNo == selectedBar ? 'class= "stroke"' : '';            
             return `<rect onclick="chooseRect(${barNo})" width="${width}" height="${height}"
-                                    ${stroke} x="${x}" y="${y}" fill="${color}"  ></rect>`;
+                                        ${stroke} x="${x}" y="${y}" fill="${color}"  ></rect>`;
 
         }
 
@@ -91,7 +79,8 @@
         });
 
         function chooseRect(stolpe) {
-            stolpe == selectedBar ? selectedBar = null : selectedBar = stolpe;
+            //stolpe == selectedBar ? selectedBar = null : selectedBar = stolpe;
+            selectedBar = stolpe == selectedBar ? null : stolpe;
         }
 
         function removeBar() {
